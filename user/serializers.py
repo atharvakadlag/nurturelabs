@@ -61,3 +61,16 @@ class UserLoginSerializer(serializers.Serializer):
             'token': jwt_token,
             'user_id': user.id
         }
+
+class AdminSerializer(serializers.Serializer):
+    advisor_name = serializers.CharField(max_length=255)
+    advisor_img_url = serializers.URLField(max_length=511)
+     
+    def validate(self, data):
+        advisor_name = data['advisor_name']
+        advisor_img_url = data['advisor_img_url']
+
+        return {
+            "advisor_name": advisor_name,
+            "advisor_img_url": advisor_img_url
+        }
