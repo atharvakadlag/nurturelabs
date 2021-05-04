@@ -33,11 +33,10 @@ class UserLoginView(RetrieveAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        response = {
-            'success' : 'True',
-            'status code' : status.HTTP_200_OK,
-            'message': 'User logged in  successfully',
+        response = { 
             'token' : serializer.data['token'],
-            }
+            'user_id': serializer.data['user_id']
+        }
 
-        return Response(response, status=response['status code'])
+        return Response(response)
+        

@@ -1,12 +1,27 @@
+from user.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
-from rest_framework import serializers
+from django.contrib.auth.hashers import make_password
+from rest_framework import serializers, status
 from rest_framework_jwt.settings import api_settings
-from user.models import User
+from rest_framework.exceptions import APIException
+from django.utils.encoding import force_text
 
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
-from django.contrib.auth.hashers import make_password
+
+class ValidationError(APIException):
+    status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+    default_detail = 'A server error occurred.'
+
+    def __init__(self, detail, status_code, field = None):
+        if status_code is not None:
+            self.status_code = status_code
+
+        if detail is not None:
+            self.detail = {field: force_text(detail)}
+        else: 
+            self.detail = {'detail': force_text(self.default_detail)}
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,28 +38,26 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=255)
-    email = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=128, write_only=True)
     token = serializers.CharField(max_length=255, read_only=True)
+    user_id = serializers.UUIDField(read_only=True)
+
     def validate(self, data):
         username = data["username"]
-        email = data["email"]
         password = data["password"]
-        user = authenticate(username=username, email=email, password=password)
+        user = authenticate(username=username, password=password)
         if user is None:
-            raise serializers.ValidationError(
-                f'A user with this {username}/{email} and {password} is not found.'
+            raise ValidationError(
+                detail = 'Incorrect username or password',
+                status_code = status.HTTP_401_UNAUTHORIZED
             )
-        try:
-            payload = JWT_PAYLOAD_HANDLER(user)
-            jwt_token = JWT_ENCODE_HANDLER(payload)
-            update_last_login(None, user)
-        except User.DoesNotExist:
-            raise serializers.ValidationError(
-                'User with given email and password does not exists'
-            )
+        
+        payload = JWT_PAYLOAD_HANDLER(user)
+        jwt_token = JWT_ENCODE_HANDLER(payload)
+        update_last_login(None, user)
+
         return {
-            'email': user.email,
             'username': user.username,
-            'token': jwt_token
+            'token': jwt_token,
+            'user_id': user.id
         }
