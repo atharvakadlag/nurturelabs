@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 from user.serializers import (
     UserSerializer, UserLoginSerializer, 
     AdminSerializer, AdvisorSerializer, BookingSerializer,
-    AdvisorBookingSerializer, AllUsersRawSerializer
+    AdvisorBookingSerializer
 )
 from user.models import User, Advisor, Booking
 
@@ -99,8 +99,3 @@ class AdvisorsBookingView(ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         return Advisor.objects.filter(user__id=user_id)
-
-class AllUsersRawView():
-    permission_classes = (AllowAny,)
-    serializer_class = AllUsersRawSerializer
-    queryset = User.objects.all()
