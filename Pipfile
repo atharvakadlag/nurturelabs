@@ -12,6 +12,7 @@ dj-database-url = "*"
 psycopg2 = "*"
 django-heroku = "*"
 pillow = "*"
+djangorestframework-jwt = "*"
 
 [dev-packages]
 ipython = "*"
