@@ -103,4 +103,4 @@ class AdvisorsBookingView(ListAPIView):
 class AllUsersRawView():
     permission_classes = (AllowAny,)
     serializer_class = AllUsersRawSerializer
-    queryset = Users.objects.all()
+    queryset = User.objects.all()
