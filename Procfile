@@ -1,1 +1,1 @@
-web: gunicorn nurturelabs.wsgi --log-file -
+web: gunicorn nutrutrelabs.wsgi --log-file -
