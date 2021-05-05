@@ -11,8 +11,10 @@ whitenoise = "*"
 dj-database-url = "*"
 psycopg2 = "*"
 django-heroku = "*"
+pillow = "*"
 
 [dev-packages]
+ipython = "*"
 
 [requires]
 python_version = "3.9"

@@ -1,11 +1,11 @@
-from user.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
 from django.contrib.auth.hashers import make_password
+from django.utils.encoding import force_text
 from rest_framework import serializers, status
 from rest_framework_jwt.settings import api_settings
 from rest_framework.exceptions import APIException
-from django.utils.encoding import force_text
+from user.models import User, Advisor, Booking
 
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
@@ -43,8 +43,8 @@ class UserLoginSerializer(serializers.Serializer):
     user_id = serializers.UUIDField(read_only=True)
 
     def validate(self, data):
-        username = data["username"]
-        password = data["password"]
+        username = data['username']
+        password = data['password']
         user = authenticate(username=username, password=password)
         if user is None:
             raise ValidationError(
@@ -71,6 +71,23 @@ class AdminSerializer(serializers.Serializer):
         advisor_img_url = data['advisor_img_url']
 
         return {
-            "advisor_name": advisor_name,
-            "advisor_img_url": advisor_img_url
+            'advisor_name': advisor_name,
+            'advisor_img_url': advisor_img_url
         }
+
+class AdvisorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Advisor
+        fields = '__all__'
+
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = '__all__'
+
+class AdvisorBookingSerializer(serializers.ModelSerializer):
+    bookings = BookingSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Advisor
+        fields = '__all__'

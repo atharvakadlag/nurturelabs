@@ -1,0 +1,414 @@
+{
+	"info": {
+		"_postman_id": "03c265aa-81fe-4f1c-8254-9fecba126641",
+		"name": "nuturelabs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin-advisor-200",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "advisor_name",
+							"value": "John Wick",
+							"type": "text"
+						},
+						{
+							"key": "advisor_img_url",
+							"value": "https://i.imgur.com/Ll1417d.jpeg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/admin/advisor/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"admin",
+						"advisor",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-advisor-400",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "advisor_name",
+							"value": "John Wick",
+							"type": "text"
+						},
+						{
+							"key": "advisor_img_url",
+							"value": "https://i.imgur.com/Ll1417d.jpeg",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/admin/advisor/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"admin",
+						"advisor",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-register-200",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "johnwick",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "johnwick@hushpuppies.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "ilovedogs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-register-400",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "johnwick",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "johnwick@hushpuppies.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "ilovedogs",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-200",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "johnwick",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "johnwick@hushpuppies.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "ilovedogs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-401",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "johnwick",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "johnwick@hushpuppies.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "iloveguns",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-login-400",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "johnwick",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "johnwick@hushpuppies.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "iloveguns",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-advisors",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/fdcb8f2c-6a50-4fd1-8a95-3be1dca7a247/advisor",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"fdcb8f2c-6a50-4fd1-8a95-3be1dca7a247",
+						"advisor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-advisor-book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "time",
+							"value": "2013-05-23T15:22",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/fdcb8f2c-6a50-4fd1-8a95-3be1dca7a247/advisor/e04fb29e-4178-423b-b4ad-c0e0a390956b/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"fdcb8f2c-6a50-4fd1-8a95-3be1dca7a247",
+						"advisor",
+						"e04fb29e-4178-423b-b4ad-c0e0a390956b",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-advisor-booking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/fdcb8f2c-6a50-4fd1-8a95-3be1dca7a247/advisor/booking/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"fdcb8f2c-6a50-4fd1-8a95-3be1dca7a247",
+						"advisor",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
