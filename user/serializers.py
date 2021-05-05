@@ -91,3 +91,8 @@ class AdvisorBookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advisor
         fields = '__all__'
+
+class AllUsersRawSerializer():
+    class Meta:
+        model = User
+        fields = '__all__'
